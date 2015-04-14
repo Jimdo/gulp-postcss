@@ -58,7 +58,7 @@ module.exports = function (processors, options) {
       file.contents = new Buffer(result.css)
 
       // Apply source map to the chain
-      if (file.sourceMap) {
+      if (result.map) {
         map = result.map.toJSON()
         map.file = file.relative
         map.sources = [].map.call(map.sources, function (source) {
