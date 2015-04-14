@@ -37,8 +37,13 @@ module.exports = function (processors, options) {
     opts.from = file.path
     opts.to = opts.to || file.path
 
+    // Skip source map if we configured to not generate
+    // source maps regardless of the default value
+    var skipSourceMap = options && options.map === false;
+
     // Generate separate source map for gulp-sourcemap
-    if (file.sourceMap) {
+    // this overwrites the default value 'false'
+    if (file.sourceMap && !skipSourceMap) {
       opts.map = { annotation: false }
     }
 
